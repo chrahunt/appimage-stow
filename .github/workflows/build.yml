@@ -1,0 +1,26 @@
+name: Build
+on: [push]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+      # Required otherwise git tag fails.
+    - name: Configure git
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "workflow.$GITHUB_RUN_ID.$GITHUB_RUN_NUMBER@github.com"
+    - name: Construct AppImage
+      run: make appimage
+      id: appimage
+    - name: Upload AppImage
+      uses: actions/upload-artifact@v1
+      with:
+        name: ${{steps.appimage.outputs.name}}
+        path: ./${{steps.appimage.outputs.name}}
+    - name: Release AppImage
+      run: make gh-continuous-release
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

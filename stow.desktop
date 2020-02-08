@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Stow
+Comment=Symlink farm manager
+Exec=stow-wrapper
+Icon=icon
+Categories=Utility;
