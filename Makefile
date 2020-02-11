@@ -47,6 +47,7 @@ build/app.AppDir/stow.desktop: | stow.desktop build/app.AppDir/
 $(APPIMAGE_NAME): build/app.AppDir/stow.desktop build/app.AppDir/icon.png
 $(APPIMAGE_NAME): build/app.AppDir/usr/bin/perl build/app.AppDir/usr/bin/stow
 $(APPIMAGE_NAME): build/app.AppDir/usr/bin/stow-wrapper
+$(APPIMAGE_NAME): build/app.AppDir/AppRun
 $(APPIMAGE_NAME): build/tools/appimagetool
 	./build/tools/appimagetool build/app.AppDir
 
